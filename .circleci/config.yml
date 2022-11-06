@@ -83,7 +83,7 @@ jobs:
       - run:
           name: Back-end build
           command: |
-            cd frontend
+            cd backend
             npm install
             npm run build
       - save_cache:
@@ -119,7 +119,7 @@ jobs:
             
   scan-frontend:
     docker:
-      - image: circleci/node:13.8.0
+      - image: cimg/node:13.8.0
     steps:
       - checkout
       - restore_cache:
@@ -127,14 +127,14 @@ jobs:
       - run:
           name: Front-end scan
           command: |
-            # cd frontend
-            # npm install
-            # npm audit fix --force --audit-level=critical 
-            # npm audit fix --force --audit-level=critical      
-            # npm audit fix --force --audit-level=critical                    
-            # # If the "npm audit fix" command above could not fix all critical vulnerabilities, try “npm audit fix --force” again
-            # npm audit --audit-level=critical
-            exit 0
+            cd frontend
+            npm install
+            #npm audit fix --force --audit-level=critical 
+            npm audit fix --force --audit-level=critical      
+            npm audit fix --force --audit-level=critical                    
+            # If the "npm audit fix" command above could not fix all critical vulnerabilities, try “npm audit fix --force” again
+            npm audit --audit-level=critical
+            #exit 0
 
   scan-backend:
     docker:
