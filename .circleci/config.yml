@@ -1,7 +1,6 @@
 version: 2.1
 
 commands:
-
   install_awscli:
     description: Install aws cli v2
     steps:
@@ -217,7 +216,7 @@ jobs:
 
   run-migrations:
     docker:
-      - image: circleci/node:13.8.0
+      - image: cimg/node:13.8.0
     steps:
       - checkout
       - install_awscli
