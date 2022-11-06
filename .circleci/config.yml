@@ -272,7 +272,7 @@ jobs:
             #   --query 'Reservations[*].Instances[*].PuplicIpAddress' \
             #   --output text)
             BACKEND_PUPLIC_IP=$(sed -n '2p' ~/project/.circleci/ansible/inventory.txt)
-            echo "API_URL=https://${BACKEND_PUPLIC_IP}:3030" >>frontend/.env
+            echo "API_URL=http://${BACKEND_PUPLIC_IP}:3030" >>frontend/.env
             cat frontend/.env
       - run:
           name: Deploy frontend objects
