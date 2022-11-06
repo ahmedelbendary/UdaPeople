@@ -43,19 +43,19 @@ commands:
         workflow_id:
           type: string
           default: ${CIRCLE_WORKFLOW_ID:0:7}  
-    steps:
-      - run:
-          name: Revert migrations
-          when: on_fail
-          command: |
-            SUCCESS=$(curl --insecure https://kvdb.io/${KVDB_BUCKET}/migration_<< parameters.workflow_id >>)
-            if(( $SUCCESS==1 )); 
-            then
-            cd ~/project/backend
-            npm install
-            npm run migrations:revert
-            fi
-            
+      steps:
+        - run:
+            name: Revert migrations
+            when: on_fail
+            command: |
+              SUCCESS=$(curl --insecure https://kvdb.io/${KVDB_BUCKET}/migration_<< parameters.workflow_id >>)
+              if(( $SUCCESS==1 )); 
+              then
+              cd ~/project/backend
+              npm install
+              npm run migrations:revert
+              fi
+              
 jobs:
   build-frontend:
     docker:
@@ -216,7 +216,7 @@ jobs:
 
   run-migrations:
     docker:
-      - image: cimg/node:13.8.0
+      - image: circleci/node:13.8.0
     steps:
       - checkout
       - install_awscli
