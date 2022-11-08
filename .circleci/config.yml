@@ -405,7 +405,7 @@ jobs:
         - checkout
         - install_awscli 
         - run:
-            name: Remove old stack workflow id
+            name: Remove old stack 
             command: |
               export STACKS=($(aws cloudformation list-stacks --query "StackSummaries[*].StackName" \
                       --stack-status-filter CREATE_COMPLETE --no-paginate --output text)) 
